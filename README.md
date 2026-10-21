@@ -6,7 +6,7 @@ End-to-end AWS ETL pipeline for healthcare encounter data. Glue + S3 + Athena, w
 
 An end-to-end ETL pipeline that takes raw healthcare encounter data, cleans and enriches it with AWS Glue, stores it in S3 as partitioned tables, and makes it queryable with Amazon Athena.
 
-I built this project to show hands-on data engineering skills with AWS services. Every step was done by me in the AWS console and in code.
+I built this project to show hands-on data engineering skills with AWS services. Every step was done by me in the AWS console and in code. Health centric. 
 
 ## Architecture
 
@@ -26,8 +26,7 @@ flowchart LR
 
 The dataset has 2 sources that are joined in the Glue job, encounter records and patient records. After processing there are 2,000 encounters covering January 2025 through October 2026.
 
-[PLACEHOLDER: say where the data came from, for example a synthetic dataset you generated or a public dataset, and how many patients are in the patient file]
-
+ This is a synthetic dataset, generated to show the realm of the job positions scope. 
 Key fields after enrichment:
 
 | Field | Description |
