@@ -57,7 +57,6 @@ The partitioned table is stored in S3 under `encounters_partitioned/year=YYYY/mo
 
 ## What the Glue Job Does
 
-[PLACEHOLDER: fill in the actual steps from your Glue script. Typical steps would be the ones below, delete any that do not apply]
 
 1. Reads the raw encounter and patient tables from the Data Catalog
 2. Cleans the data by fixing data types and handling missing values
