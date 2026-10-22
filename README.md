@@ -19,6 +19,8 @@ flowchart LR
     F --> G[Amazon Athena<br/>SQL analysis]
     B -.->|job fails| H[EventBridge rule<br/>health-pipeline-job-failed]
     H --> I[SNS topic<br/>health_pipeline_alerts<br/>email]
+    
+```
 
 
 **AWS services used:** S3, Glue ETL, Glue Data Quality, Glue Crawlers, Glue Data Catalog, Athena, EventBridge, SNS
