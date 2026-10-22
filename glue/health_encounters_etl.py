@@ -6,7 +6,7 @@ I built this project to show hands-on data engineering skills with AWS services.
 
 ## Architecture
 
-```mermaid
+
 flowchart LR
     A[Raw CSV files<br/>S3 raw bucket] -->|Object Created| T[EventBridge rule<br/>health-pipeline-raw-upload]
     T --> W[Glue Workflow<br/>health_pipeline_workflow]
@@ -18,7 +18,7 @@ flowchart LR
     F --> G[Amazon Athena<br/>SQL analysis]
     B -.->|job fails| H[EventBridge rule<br/>health-pipeline-job-failed]
     H --> I[SNS topic<br/>health_pipeline_alerts<br/>email]
-```
+
 
 **AWS services used:** S3, Glue ETL, Glue Data Quality, Glue Crawlers, Glue Data Catalog, Athena, EventBridge, SNS
 **Region:** us-east-2
@@ -51,7 +51,7 @@ Key fields after enrichment:
 |---|---|
 | encounters | Raw encounter data |
 | patients | Raw patient data |
-| encounters_enriched | Output from the first version of the Glue job, joined but unpartitioned, kept as the baseline for the partition cost comparison |
+| encounters_enriched | Output from the first version of the Glue job, joined but unpartitioned |
 | processed_encounters_enriched | Cleaned encounters joined with patient details, unpartitioned |
 | processed_encounters_partitioned | Clean output from the Glue job, partitioned by year and month, cataloged by `health_processed_crawler` |
 
@@ -59,7 +59,7 @@ The partitioned output is stored under `encounters_partitioned/year=YYYY/month=M
 
 ## What the Glue Job Does
 
-The job is `health_encounters_etl`, built in Glue Studio.
+The job is `health_encounters_etl`, built in Glue Studio. The full script is in [`glue/health_encounters_etl.py`](glue/health_encounters_etl.py).
 
 1. Reads the raw `encounters` and `patients` tables from the Glue Data Catalog
 2. Renames the patient columns to avoid name conflicts, then joins encounters to patients on `patient_id`
@@ -146,7 +146,7 @@ Both queries returned 102 encounters with an average billed amount of $4,325.76.
 - **Commercial insurance has the highest 30-day readmission rate** at 1.9%. Medicare and TRICARE are the lowest at 0.9%.
 - **Monthly volume is steady** at 81 to 109 encounters per full month. October 2026 shows 55 because the data ends partway through that month.
 
-## In Progress
+## Project Status
 
 - [x] Test safe reruns: reran the job, the row count stayed at 2,000 and the year/month partitions were rebuilt
 - [x] Glue Workflow that runs the job, then the crawler, tested with a full run that returned 2,000 of 2,000 rows
@@ -179,3 +179,7 @@ Both queries returned 102 encounters with an average billed amount of $4,325.76.
 ![Partitioned query](docs/screenshots/10_cost_partitioned.png)
 
 This project shows the full path from raw files to clean, validated, cost-optimized data on AWS.
+
+
+
+
