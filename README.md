@@ -7,7 +7,6 @@ I built this project to show hands-on data engineering skills with AWS services.
 ## Architecture
 
 ```mermaid
-```
 flowchart LR
     A[Raw CSV files<br/>S3 raw bucket] -->|Object Created| T[EventBridge rule<br/>health-pipeline-raw-upload]
     T --> W[Glue Workflow<br/>health_pipeline_workflow]
